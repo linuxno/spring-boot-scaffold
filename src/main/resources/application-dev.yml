@@ -1,0 +1,70 @@
+# Put this file on local or remote spring-cloud-config-server
+# Development Environment Configuration
+# devtools
+spring:
+    devtools:
+        livereload:
+            enabled: true
+        restart:
+            enabled: true
+            exclude: static/**,public/**
+    kafka:
+        bootstrap-servers: 10.3.172.201:9092
+        producer:
+            # 发生错误后,消息重发的次数
+            retries: 3
+            # 键的序列化方式
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            # 值的序列化方式
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+        consumer:
+            group-id: ismp-monitor
+            # 键的反序列化方式
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            # 值的反序列化方式
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            #自动提交消费位移间隔时间
+            auto-commit-interval: 200000
+            #批量消费每次多消费多少条
+            max-poll-records: 500
+            #自动开启提交
+            enable-auto-commit: true
+            auto-offset-reset: latest
+            #最大等待时间
+            fetch—max-wait: 400
+            #最小消费字节数
+            fetch-min-size: 1
+            #分组管理时心跳到消费者协调器之间的预计时间
+            heartbeat-interval: 3000
+            isolation-level: read_committed
+            properties:
+                max.poll.interval.ms: 600000
+        listener:
+            # 在侦听器容器中运行的线程数
+            concurrency: 8
+    data:
+        redis:
+            database: 3
+            host: 10.3.163.131
+            port: 6379
+            password: iflytek
+            jedis:
+                pool:
+                    max-active: 200
+                    max-idle: 10
+                    min-idle: 0
+                    max-wait: -1
+            timeout: 1200
+    elasticsearch:
+        uris: 10.3.163.131:9409
+
+# Logging setting
+logging:
+    level:
+        com:
+            code:
+                scaffold: DEBUG
+        org:
+            springframework:
+                web: INFO
+        root: INFO

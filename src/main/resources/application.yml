@@ -1,0 +1,30 @@
+# Server setting
+server:
+  port: 8980
+  servlet:
+    context-path: /
+    session:
+      timeout: 3000
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  # Set my name, keep me same as project name.
+  application:
+    name: '@project.artifactId@'
+  # Jackson
+  jackson:
+    time-zone: GMT+8
+  # Which profile to load
+  profiles:
+    active: dev
+
+# This application information
+info:
+  buildtime: '@build-timestamp@'
+  description: '@project.description@'
+  name: '@project.artifactId@'
+  version: '@project.version@'
+management:
+  security:
+    enabled: false
