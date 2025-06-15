@@ -1,0 +1,21 @@
+# Put this file on local or remote spring-cloud-config-server
+# Development Environment Configuration
+# devtools
+spring:
+    devtools:
+        livereload:
+            enabled: true
+        restart:
+            enabled: true
+            exclude: static/**,public/**
+
+# Logging setting
+logging:
+    level:
+        com:
+            code:
+                scaffold: DEBUG
+        org:
+            springframework:
+                web: INFO
+        root: INFO
